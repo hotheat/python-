@@ -339,7 +339,6 @@ def draw_block_map(x, y, map, size=3):
     for i in range(len(map)):
         offset_x = x
         offset_y = y - i * size * (num_pixels + 2)
-        # log('x y', x, y)
         draw_block_line(offset_x, offset_y, map[i], size=size)
 
 
@@ -460,11 +459,9 @@ def random_square_09(n, limit=3):
     while i < limit:
         r = random.randint(0, n - 1)
         c = random.randint(0, n - 1)
-        # log(r_c_list)
         if (r, c) not in r_c_list:
             square_09[r][c] = 9
             r_c_list.append((r, c))
-            # log(r_c_list)
             i += 1
     return square_09
 
@@ -511,15 +508,12 @@ def marked_square(array):
     '''
     # 生成行列各加 1 的新列表矩阵
     array_cp = []
-    # log('array 0 ', array[0])
     columns = len(array[0])
     rows = len(array)
     array_cp.append([0] * (columns + 2))
     for i in array:
         array_cp.append([0] + i + [0])
     array_cp.append([0] * (columns + 2))
-    # log('array copy', array_cp)
-    # log('rows', rows)
     for i in range(1, rows + 1):
         for j in range(1, columns + 1):
             if array_cp[i][j] == 9:
@@ -572,7 +566,7 @@ x0, y0 = 0, 0
 n = input('请输入 n, 生成 n * n 地图：')
 n = int(n)
 land_mine = int(input('请输入雷数：'))
-assert land_mine <= n**2, '输入雷数应小于 {} 的平方'.format(str(n))
+assert land_mine <= n ** 2, '输入雷数应小于 {} 的平方'.format(str(n))
 new_square = blank(x0, y0, n, land_mine)
 
 
@@ -580,7 +574,6 @@ def click_start(*args):
     x, y = args
     index_tuple = touched_index(x, y, x_rect=x0, y_rect=y0)
     if 0 <= index_tuple[0] < n and 0 <= index_tuple[1] < n:
-        # log('new square', new_square)
         block_num = new_square[index_tuple[0]][index_tuple[1]]
         block = num_list[block_num]
         block_num = str(block_num)
@@ -590,7 +583,6 @@ def click_start(*args):
             offset_y = y0 - 7 * 3 * index_tuple[1]
             draw_block(offset_x, offset_y, block, size=3)
         else:
-            # log('new square 02', new_square)
             draw_mine_map(x0, y0, new_square)
             offset_x = x0
             offset_y = y0 + 7 * 3
