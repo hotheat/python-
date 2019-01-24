@@ -1,2 +1,2 @@
-![image](https://github.com/hotheat/python-saolei/saolei.gif)
+![image](https://github.com/hotheat/python-saolei/blob/master/saolei.gif)
 
