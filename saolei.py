@@ -1,18 +1,8 @@
-# 2016/7/24
-#
-# ========
-# 作业 (实时更新)
-#
-# 注意, 作业会在这里实时更新, 有问题请评论
-# 注意, 登录论坛后才有评论功能
-# ========
-# 更新
-#
-#
-# 请直接在我的代码中更改/添加, 不要新建别的文件
+# 2017/10/24
 
 import random
 import turtle
+from typing import List
 
 saolei = {
     '0': [
@@ -131,8 +121,6 @@ t.hideturtle()
 t._tracer(10000, 0.001)
 
 
-# t._tracer(20, 0.01)
-
 def setpen(x, y):
     t.penup()
     t.goto(x, y)
@@ -143,7 +131,7 @@ def setpen(x, y):
 # 测试
 # 如果没有测试, 自行编写
 # ====
-#
+
 # 定义我们用于测试的函数
 # ensure 接受两个参数
 # condition 是 bool, 如果为 False, 则输出 message
@@ -157,15 +145,12 @@ def ensure(condition, message):
 a = [1, 2, 3, 1, 3, 5]
 
 
-# 作业 8.1
-def unique(a):
+def unique(a: List) -> List:
     '''
     a 是一个 list
 	返回一个 list, 包含了 a 中所有元素, 且不包含重复元素
     例如 a 是 [1, 2, 3, 1, 3, 5]
     返回 [1, 2, 3, 5]
-
-	:return: list
     '''
     unique_ls = []
     for i in a:
@@ -173,27 +158,14 @@ def unique(a):
             unique_ls.append(i)
         else:
             continue
-    # log('unique list', unique_ls)
     return unique_ls
 
 
-ensure(unique(a) == [1, 2, 3, 5], 'unique test')
-
-# 作业 8.2
-# 5 分钟做不出就看提示
-#
-a = [1, 2, 4, 6, 8, 9, 10]
-b = [2, 5, 6, 7, 11, 8, 9]
-
-
-def intersection(a, b):
+def intersection(a: List, b: List) -> List:
     '''
     a b 都是 list
-
     返回一个 list, 里面的元素是同时出现在 a b 中的元素
     这个 list 中不包含重复元素
-
-    :return: list
     '''
     intersect_ls = []
     for i in a:
@@ -203,41 +175,23 @@ def intersection(a, b):
     return intersect_ls
 
 
-ensure(intersection(a, b) == [2, 6, 8, 9, ], 'intersection test')
-
-
-# 作业 8.3
-# 5 分钟做不出就看提示
-#
-def union(a, b):
+def union(a: List, b: List) -> List:
     '''
     a b 都是 list
-
     返回一个 list, 里面的元素是所有出现在 a b 中的元素
     这个 list 中不包含重复元素
-
-    :return: list
     '''
     c = a + b
     d = unique(c)
     return d
 
 
-# log('union a, b', union(a, b))
-
-
-# 作业 8.4
-# 5 分钟做不出就看提示
-#
-def difference(a, b):
+def difference(a: List, b: List) -> List:
     '''
     a b 都是 list
-
     返回一个 list, 里面的元素是
     所有在 a 中有 b 中没有的元素
     这个 list 中不包含重复元素
-
-    :return: list
     '''
     diff_ls = []
     for i in a:
@@ -246,37 +200,19 @@ def difference(a, b):
     return diff_ls
 
 
-# log('diffrence', difference(a, b))
-
-
-# 作业 8.5
-# 5 分钟做不出就看提示
-#
-def difference_all(a, b):
+def difference_all(a: List, b: List) -> List:
     '''
     a b 都是 list
-
     返回一个 list, 里面的元素是
     所有在 a b 中的非公共元素
     这个 list 中不包含重复元素
-
-    :return: list
     '''
     diff_a = difference(a, b)
     diff_b = difference(b, a)
     return diff_a + diff_b
 
 
-# log('diffrence all', difference_all(a, b))
-
-# 作业 8.6
-# 5 分钟做不出就看提示
-#
-a = [0, 2, 4, 8]
-b = [0, 1, 2, 4, 8, 9]
-
-
-def issubset(a, b):
+def issubset(a: List, b: List) -> bool:
     '''
     a b 都是 list
 
@@ -293,24 +229,7 @@ def issubset(a, b):
     return True
 
 
-# log('issubset', issubset(a, b))
-# =====
-# 提示
-# =====
-'''
-暂缺
-'''
-
-
-# ===
-# 下面开始是扫雷的作业了
-# ===
-# 自行补全所需的代码
-# 比如 rect
-#
-# 作业 8.7
-# 5 分钟做不出就看提示
-#
+# 扫雷代码
 def rect(x, y, color, size):
     setpen(x, y)
     t.pencolor('#FAEBD7')
@@ -327,10 +246,7 @@ def draw_pixel(x, y, pixel, size=3):
     pixel 是一个 像素值
     像素值是只有一个字符的 str
     如果是 '0' 则画一个白色否则画黑色
-
 	以坐标 x y 为矩形左上角顶点画一个边长为 size 的正方形
-
-    :return: None
     '''
     setpen(x, y)
     if pixel == '0':
@@ -340,21 +256,10 @@ def draw_pixel(x, y, pixel, size=3):
     rect(x, y, color, size)
 
 
-# draw_pixel(100, 100, 'a', 50)
-
-
-# 作业 8.8
-# 5 分钟做不出就看提示
-#
-
-
 def draw_line(x, y, pixels, size=3):
     '''
     pixels 是一个包含了像素值的 list
-
 	以坐标 x y 为左上角顶点画一排边长为 size 的正方形
-
-    :return: None
     '''
     setpen(x, y)
     for i in range(len(pixels)):
@@ -364,8 +269,6 @@ def draw_line(x, y, pixels, size=3):
         draw_pixel(offset_x, offset_y, pixel, size=size)
 
 
-# draw_line(0, 0, ['0', '1', '0', '1', '0', '1', '0', '1', '0', '1', '0', '1'])
-# draw_line()
 block = [
     ['0', '0', '1', '0', '0'],
     ['0', '0', '1', '0', '0'],
@@ -376,17 +279,11 @@ block = [
 ]
 
 
-# 作业 8.9
-# 5 分钟
-#
 def draw_block(x, y, block, size=3):
     '''
     block 是一个包含了 pixels list 的 list
 	(也就是一个像素方阵)
-
 	以坐标 x y 为左上角顶点画一个边长为 size 的正方形方阵
-
-    :return: None
     '''
     setpen(x, y)
     for i in range(len(block)):
@@ -395,9 +292,7 @@ def draw_block(x, y, block, size=3):
         draw_line(offset_x, offset_y, block[i], size=size)
 
 
-# draw_block(0, 0, block)
-
-
+#
 line = [
     block,
     block,
@@ -406,16 +301,11 @@ line = [
 ]
 
 
-# 作业 8.10
-# 5分钟
-#
 def draw_block_line(x, y, line, size=3):
     '''
     line 是一个包含了上面 block 元素的 list
     block 的宽度是 size * number_of_pixels (这个不懂就留言问)
     x y 是左上角顶点坐标
-
-    :return: None
     '''
     num_pixels = len(line[0][0])
     log('num pixels', num_pixels)
@@ -426,11 +316,6 @@ def draw_block_line(x, y, line, size=3):
         draw_block(offset_x, offset_y, line[i], size=size)
 
 
-# draw_block_line(0, 0, line)
-
-# 作业 8.11
-# 5分钟
-#
 map = [
     line,
     line,
@@ -458,14 +343,8 @@ def draw_block_map(x, y, map, size=3):
         draw_block_line(offset_x, offset_y, map[i], size=size)
 
 
-# draw_block_map(0, 0, map)
-
-
-# 作业 8.12
-# 5分钟
-#
 # 画扫雷地图
-# 利用作业 7 中 marked_square 生成的 list
+# 利用 marked_square 生成的 list
 # square = [
 #     [1, 2, 9, 2, 9],
 #     [1, 9, 2, 2, 2],
@@ -483,8 +362,6 @@ def draw_mine_map(x, y, map):
     使用之前的函数画出这个地图
     注意: 0 - 8 的字符图案都存在一个 dict 中, 你要定义好
     字符图案最好是 10 * 10 或者 15 * 15, 总之工整一点且必须是正矩形
-
-    :return: None
     '''
     map_block = map[:]
     for i, row in enumerate(map):
@@ -504,10 +381,6 @@ square = [
 ]
 
 
-# draw_mine_map(-200, 200, square)
-
-
-# 作业 8.13
 def rect_touched(x, y, w, h, point):
     '''
     x y 是一个矩形的左上角坐标
@@ -528,14 +401,9 @@ def rect_touched(x, y, w, h, point):
         return False
 
 
-# log('rect_touched', rect_touched(0, 0, 3, 4, (1, 1)))
-
-
-# 作业 8.14
-# 10 分钟, 有提示
 # 检测点击的索引下标
-# 利用课 7 上课代码中的 click 事件监听机制来判断
-# 你点击的坐标在 map 中的索引下标(代码如下)
+# 利用 click 事件监听机制来判断
+# 你点击的坐标在 map 中的索引下标
 # http://vip.cocode.cc/chest/shared/165
 def touched_index(x, y, x_rect=100, y_rect=100):
     '''
@@ -551,14 +419,10 @@ def touched_index(x, y, x_rect=100, y_rect=100):
     block_width = n * size
     index_x = int((x - x_rect) // block_width)
     index_y = int((y_rect - y) // block_width)
-
     return (index_x, index_y)
 
 
-# log('index tuple', touched_index(150, 90, x_rect=100, y_rect=100))
-
 '''
-8.14
 touched_index
 假设 map 是 5 * 5 的格子
 左上角坐标是 100, 100
@@ -612,13 +476,10 @@ def add_square(i, j, square_table):
         (i + 1, j - 1), (i + 1, j), (i + 1, j + 1)
     ]
     for k in loc:
-        # log('i', 'j', i, j)
         x = k[0]
         y = k[1]
-        # log('x', 'y',x, y,)
         if square_table[x][y] != 9:
             square_table[x][y] += 1
-            # log('square table', square_table)
 
 
 def marked_square(array):
@@ -683,10 +544,6 @@ def draw_label(x, y, text):
     t.write(text, font=("Times", 18, "bold"))
 
 
-# draw_label(150, 150, 'Game over')
-# 作业 9.2
-# 无提示
-#
 # 基于作业 8, 完成完整版的扫雷, 功能如下
 # 程序初始状态, 所有格子都是空白
 # 用户点击格子后, 检查点击的是什么
@@ -715,8 +572,9 @@ x0, y0 = 0, 0
 n = input('请输入 n, 生成 n * n 地图：')
 n = int(n)
 land_mine = int(input('请输入雷数：'))
+assert land_mine <= n**2, '输入雷数应小于 {} 的平方'.format(str(n))
 new_square = blank(x0, y0, n, land_mine)
-# log('new square 01', new_square)
+
 
 def click_start(*args):
     x, y = args
@@ -740,6 +598,7 @@ def click_start(*args):
             draw_label(offset_x, offset_y, 'Game Over')
 
 
-turtle.onscreenclick(click_start)
-turtle.update()
-turtle.done()
+if __name__ == '__main__':
+    turtle.onscreenclick(click_start)
+    turtle.update()
+    turtle.done()
